@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Marks</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+          .chart-container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            text-align: start;
+        }
+        .container {
+            display: flex;
+            overflow: hidden;
+            height: 100vh;
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+        }
+        .left, .right {
+            flex: 1;
+        }
+        /* Adjust styles for left and right sections as needed */
+        .left {
+            background-color: #f3f3f3;
+            padding: 20px;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+        .right {
+            background-color: #ccc;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+        /* Media query for mobile screens */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Stack items vertically */
+            }
+            .left, .right {
+                width: 100%; /* Take full width */
+                height: fit-content;
+            }
+        }
+
+        /* about section  */
+        .f-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #3c3c3cd6;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+        /* About Project section styles */
+        .about-section {
+            margin-bottom: 20px;
+        }
+
+        .about-section h2 {
+            color: #333;
+        }
+
+        .about-section p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .github-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .github-btn:hover {
+            background-color: #555;
+        }
+
+        .prediction {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e0f7fa;
+    border-left: 5px solid #007BFF;
+    border-radius: 4px;
+}
+
+.prediction h2 {
+    margin: 0;
+    text-align: start;
+    color: #007BFF;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <!-- Content for the left section -->
+            <div class="about-section">
+                <h1>About Project</h1>
+                <p>Project Overview: This project is an end-to-end data science application aimed at predicting students' scores based on various demographic and educational features. The project leverages machine learning techniques and follows industry best practices, including structured folder organization, custom loggers and exception handling</p>
+                <!-- <p>Tech Stack: <i class="fab fa-python"></i> scikit-learn, <i class="fab fa-css3"></i> CSS, <i class="fab fa-html5"></i> HTML</p> -->
+                <a href="https://github.com/munirsiddiqui54/MLProject" target="_blank" class="github-btn"><i class="fab fa-github"></i> View on GitHub</a>
+                <div class="chart-container">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="f-container">
+                <h1>Key Components</h1>
+                <ol>
+                    <li><b>Data Ingestion:</b> Loading and preprocessing raw data.</li>
+                    <li><b>Data Transformation:</b> Feature engineering and data transformation.</li>
+                    <li><b>Model Training:</b> Training machine learning models to predict student scores.</li>
+                    <li><b>Logging:</b> Custom logging to track the pipeline execution.</li>
+                    <li><b>Exception Handling:</b> Custom exceptions to handle errors gracefully.</li>
+                </ol>
+                
+            </div>
+                <div class="left-container">
+                    <h1>Installation</h1>
+                    <div class="step">
+                        <h2>1. Clone the repository:</h2>
+                        <div class="code-block">
+                            <code>git clone https://github.com/munirsiddiqui54/MLProject.git</code><br>
+                            <code>cd MLProject</code>
+                        </div>
+                    </div>
+                    
+                
+                    <div class="step">
+                        <h2>2. Create and activate a virtual environment:</h2>
+                        <div class="code-block">
+                            <code>conda create -n venv python=3.7 </code><br>
+                            <code>conda activate venv</code>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <h2>3. Install the required packages:</h2>
+                        <div class="code-block">
+                            <code>pip install -r requirements.txt</code>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <h2>4. Run the Model Trainer Script:</h2>
+                        <div class="code-block">
+                            <code>python src/components/model_trainer.py</code>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="f-container">
+                <h1>Features</h1>
+                <ul>
+                    <li><b>Gender:</b> Sex of the students (Male/Female)</li>
+                    <li><b>Race/Ethnicity:</b> Ethnicity of the students (Group A, B, C, D, E)</li>
+                    <li><b>Parental Level of Education:</b> The highest level of education attained by the parents (bachelor's degree, some college, master's degree, associate's degree, high school)</li>
+                    <li><b>Lunch:</b> Type of lunch before the test (standard or free/reduced)</li>
+                    <li><b>Test Preparation Course:</b> Completion status of the test preparation course (complete or not complete)</li>
+                    <li><b>Reading Score:</b> Score in reading</li>
+                    <li><b>Writing Score:</b> Score in writing</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <div class="right">
+            <!-- Content for the right section -->
+            
+    <div class="mycontainer">
+        <!-- Your form content -->
+        <h1>
+            Student Marks Prediction
+        </h1>
+            <form action="/submit" method="POST">
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select name="gender" id="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="race_ethnicity">Race/Ethnicity:</label>
+                    <select name="race_ethnicity" id="race_ethnicity" required>
+                        <option value="group A">Group A</option>
+                        <option value="group B">Group B</option>
+                        <option value="group C">Group C</option>
+                        <option value="group D">Group D</option>
+                        <option value="group E">Group E</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="parental_education">Parental Level of Education:</label>
+                    <select name="parental_education" id="parental_education" required>
+                        <option value="bachelor's degree">Bachelor's Degree</option>
+                        <option value="some college">Some College</option>
+                        <option value="master's degree">Master's Degree</option>
+                        <option value="associate's degree">Associate's Degree</option>
+                        <option value="high school">High School</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lunch">Lunch:</label>
+                    <select name="lunch" id="lunch" required>
+                        <option value="standard">Standard</option>
+                        <option value="free/reduced">Free/Reduced</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="test_preparation">Test Preparation Course:</label>
+                    <select name="test_preparation" id="test_preparation" required>
+                        <option value="completed">Completed</option>
+                        <option value="none">Not Completed</option>
+                    </select>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="math_score">Math Score:</label>
+                    <input type="number" id="math_score" name="math_score" min="0" max="100" required>
+                </div> -->
+                <div class="form-group">
+                    <label for="reading_score">Reading Score:</label>
+                    <input type="number" id="reading_score" name="reading_score" min="0" max="100" required>
+                </div>
+                <div class="form-group">
+                    <label for="writing_score">Writing Score:</label>
+                    <input type="number" id="writing_score" name="writing_score" min="0" max="100" required>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            {% if prediction is not none %}
+            <div class="prediction">
+                <h2>Prediction:</h2>
+                <p>Your predicted math score is: <strong>{{ prediction }}/100</strong></p>
+                <p>( *The prediction is made using Linear Regression Model.) </p>
+            </div>
+            {% endif %}
+    </div>
+        </div>
+    </div>
+    <script>
+        // Data for the chart stored in a dictionary
+        const dataDict = {
+            "RandomForest": 0.8547153629900446,
+            "DecisionTree": 0.7544366199498311,
+            "LinearRegression": 0.8778938096083478,
+            "GradientBoosting": 0.8731344797054658,
+            "K-NeighboursRegressor": 0.47561174068704326,
+            "XGBRegressor": 0.8206920892156877,
+            "AdaBoostRegressor": 0.8561216897745175
+        };
+
+        // Extract labels and data from the dictionary
+        const labels = Object.keys(dataDict);
+        const data = Object.values(dataDict);
+
+        // Find the highest and lowest values and their indices
+        const maxValue = Math.max(...data);
+        const minValue = Math.min(...data);
+        const maxIndex = data.indexOf(maxValue);
+        const minIndex = data.indexOf(minValue);
+
+        // Colors for the bars
+        const backgroundColors = data.map((value, index) => {
+            if (index === maxIndex) return 'rgba(5, 255, 55,0.4)'; // Green for max
+            if (index === minIndex) return 'rgba(154, 62, 35, 0.2)'; // Blue for min
+            return 'rgba(54, 162, 235, 0.2)'; // Blue for others
+        });
+        const borderColors = data.map((value, index) => {
+            if (index === maxIndex) return 'rgba(5, 255, 55,1)'; // Green for max
+            if (index === minIndex) return 'rgba(154, 62, 35, 1)'; // Blue for min
+            return 'rgba(54, 162, 235, 1)'; // Blue for others
+        });
+
+        // Config for the chart
+        const config = {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    label:"",
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // Render the chart
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+</body>
+</html>
+
+
+
